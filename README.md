@@ -102,7 +102,7 @@ examen-fya/
 
 ```bash
 git clone https://github.com/KevinDaniel18/examen-tecnico-fya.git
-cd examen-fya
+cd examen-tecnico-fya
 ```
 
 ### 3. Variables de entorno
