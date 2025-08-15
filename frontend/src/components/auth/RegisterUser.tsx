@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { UserPlus, Mail, Lock, User, Loader2 } from "lucide-react";
+import { AxiosError } from "axios";
 
 export default function RegisterUser() {
   const [data, setData] = useState({ name: "", email: "", password: "" });
@@ -49,11 +50,15 @@ export default function RegisterUser() {
       await createUser(data);
       setSuccess("¡Cuenta creada exitosamente! Ya puedes iniciar sesión.");
       setData({ name: "", email: "", password: "" });
-    } catch (error: any) {
-      console.error(error);
-      setError(
-        error.message || "Error al crear la cuenta. Inténtalo de nuevo."
-      );
+    } catch (err) {
+      let message = "Error al crear la cuenta. Inténtalo de nuevo.";
+
+      if (err instanceof AxiosError) {
+        message = err.response?.data?.message || err.message || message;
+      }
+
+      console.error(err);
+      setError(message);
     } finally {
       setIsLoading(false);
     }
