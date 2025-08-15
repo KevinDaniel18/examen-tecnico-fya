@@ -1,6 +1,6 @@
 import axios from "axios";
 export const instance = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL || "http://localhost:3000",
+  baseURL: process.env.NEXT_PUBLIC_API_UR,
 });
 
 const getAuthToken = async () => {
